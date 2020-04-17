@@ -7,31 +7,36 @@ public class Runner {
         Board board=new Board();
         int x=0;
         boolean w;
-        while(true){
+        while(true) {
 
-
-            System.out.println("Enter A Column:");
-            int col= sc.nextInt();
+            if(x==21){
+                System.out.println("Draw");
+                break;
+            }
+            int col = -1;
+            while (col < 0 || col > 6){
+                System.out.println("Enter A Column:");
+                if(sc.hasNextInt()) {
+                    col = sc.nextInt();
+                }else{
+                    sc.next();
+                }
+            }
             w= board.move(col);
             if(w){
                 System.out.println("You win!");
                 break;
             }
 
-            System.out.println("Enter A Column:");
-            int col2= sc.nextInt();
-            w=board.moveAI(col2);
+        System.out.println("AI Move:");
+
+            w=board.moveAI(board.getMove());
             if(w){
                 System.out.println("AI wins!");
                 break;
             }
-//(int )(Math.random() * 7)
-            if(x>42){
-                break;
-            }
             x++;
         }
-
 
     }
 }
